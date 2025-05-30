@@ -349,7 +349,7 @@
 
                             <h2 class="mb-4 text-center" data-aos="fade-up">부담없이 물어보세요<em>!</em></h2>
 
-                            <form name="contact" method="POST"  data-netlify="true" class="contact-form" data-aos="fade-up">
+                            <form name="contact" method="POST" class="contact-form" data-aos="fade-up">
 
                                 <div class="row">
                                     
@@ -432,6 +432,32 @@
                 </div>
             </section>
         </footer>
+
+        <!-- EmailJS SDK 추가 -->
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script>
+        (function(){
+            emailjs.init("0ryPmMnvwfzuVE7Dy");
+        })();
+        </script>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form[name='contact']");
+
+            form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            emailjs.sendForm('service_90wudks', 'templete_f7ahcts', form)
+                .then(function () {
+                alert("성공적으로 전송되었습니다!");
+                form.reset();
+                }, function (error) {
+                alert("오류가 발생했습니다. 다시 시도해주세요.");
+                console.error(error);
+                });
+            });
+        });
+        </script>
 
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
